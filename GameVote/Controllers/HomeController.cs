@@ -15,15 +15,41 @@ namespace GameVote.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Manage()
         {
-            ViewBag.Message = "Your contact page.";
+            return View();
+        }
 
+        public ActionResult David()
+        {
+            return View();
+        }
+
+        public ActionResult Connie()
+        {
+            return View();
+        }
+
+        public ActionResult Gary()
+        {
+            return View();
+        }
+
+        public ActionResult Jose()
+        {
+            return View();
+        }
+
+        public ActionResult Jeremy()
+        {
+            return View();
+        }
+
+        public ActionResult Sam()
+        {
             return View();
         }
     }
