@@ -1,95 +1,123 @@
 ﻿@{
     ViewBag.Title = "Manage Games";
+    GameVote.Models.GameModels ListHelp = new GameVote.Models.GameModels();
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
-<!--This page for adding/editing/removing games from DB-->
+<!--************************Add Game*****************************-->
 
-<form class="form-horizontal">
-    <fieldset>
+<!--Modal Buttonn-->
+<div class="wrapper">
+    <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModal">Add Game</button>
+</div>
 
-        <!-- Form Name -->
-        <legend>Form Name</legend>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
 
-        <!-- Get the Games Title-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="formName">Game Name</label>
-            <div class="col-md-4">
-                <input id="formName" name="formName" placeholder="" class="form-control input-md" required="" type="text">
-
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="gallerybtn" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Add New Game</h2>
             </div>
-        </div>
+            <div class="modal-body">
 
-        <!-- Get a Description of the Game -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="formDescription">Game Description</label>
-            <div class="col-md-4">
-                <textarea class="form-control" id="formDescription" name="formDescription"></textarea>
-            </div>
-        </div>
+                <!--FORM STARTS HERE-->
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <fieldset>
+                        <!-- Get the Games Title-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formName">Game Name</label>
+                            <div class="col-md-6">
+                                <input id="formName" name="formName" placeholder="" class="form-control input-md" required type="text">
 
-        <!-- Link to a URL of the Game-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="formImage">Image URL</label>
-            <div class="col-md-4">
-                <input id="formImage" name="formImage" placeholder="https://www.website.com/image.jpg" class="form-control input-md" type="text">
+                            </div>
+                        </div>
 
-            </div>
-        </div>
+                        <!-- Get a Description of the Game -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formDescription">Game Description</label>
+                            <div class="col-md-6">
+                                <textarea class="form-control" id="formDescription" name="formDescription"></textarea>
+                            </div>
+                        </div>
 
-        <!-- Get the Minumum number of players needed to play-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="formMinPlayers">Min Players</label>
-            <div class="col-md-1">
-                <input id="formMinPlayers" name="formMinPlayers" placeholder="1" class="form-control input-md" required="" type="number">
+                        <!-- Link to a URL of the Game-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formImage">Image URL</label>
+                            <div class="col-md-6">
+                                <input id="formImage" name="formImage" placeholder="https://www.website.com/image.jpg" class="form-control input-md" type="text">
 
-            </div>
-        </div>
+                            </div>
+                        </div>
 
-        <!-- Get the max number of players that can play-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="formMaxPlayers">Max Players</label>
-            <div class="col-md-1">
-                <input id="formMaxPlayers" name="formMaxPlayers" placeholder="4" class="form-control input-md" required="" type="number">
+                        <!-- Get the Minumum number of players needed to play-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formMinPlayers">Min Players</label>
+                            <div class="col-md-2">
+                                <input id="formMinPlayers" name="formMinPlayers" placeholder="1" class="form-control input-md" required type="number">
 
-            </div>
-        </div>
+                            </div>
+                        </div>
 
-        <!-- Get the playtime in Minuetes-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="formTime">Play Time</label>
-            <div class="col-md-4">
-                <input id="formTime" name="formTime" placeholder="120" class="form-control input-md" required="" type="number">
-                <span class="help-block">Please enter playtime in minutes</span>
-            </div>
-        </div>
+                        <!-- Get the max number of players that can play-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formMaxPlayers">Max Players</label>
+                            <div class="col-md-2">
+                                <input id="formMaxPlayers" name="formMaxPlayers" placeholder="4" class="form-control input-md" required type="number">
 
-        <!-- Discover whether or not this game has already been played -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="formPlayed">New Game?</label>
-            <div class="col-md-4">
-                <div class="radio">
-                    <label for="formPlayed-0">
-                        <input name="formPlayed" id="formPlayed-0" value="False" checked="checked" type="radio">
-                        We played this
-                    </label>
-                </div>
-                <div class="radio">
-                    <label for="formPlayed-1">
-                        <input name="formPlayed" id="formPlayed-1" value="True" type="radio">
-                        Never Played
-                    </label>
-                </div>
-            </div>
-        </div>
+                            </div>
+                        </div>
 
-        <!-- Submit Button -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="submitButton"></label>
-            <div class="col-md-4">
-                <button id="submitButton" name="submitButton" class="btn btn-info">Add Game</button>
-            </div>
-        </div>
+                        <!-- Get the playtime in Minuetes-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formTime">Play Time</label>
+                            <div class="col-md-4">
+                                <input id="formTime" name="formTime" placeholder="120" class="form-control input-md" required type="number">
+                                <span class="help-block">Please enter playtime in minutes</span>
+                            </div>
+                        </div>
 
-    </fieldset>
-</form>
+                        <!-- Discover whether or not this game has already been played -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formPlayed">New Game?</label>
+                            <div class="col-md-4">
+                                <div class="radio">
+                                    <label for="formPlayed-0">
+                                        <input name="formPlayed" id="formPlayed-0" value="0" checked="checked" type="radio">
+                                        We played this
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="formPlayed-1">
+                                        <input name="formPlayed" id="formPlayed-1" value="1" type="radio">
+                                        Never Played
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="submitButton"></label>
+                            <div class="col-md-4">
+                                <button id="submitButton" name="submitButton" class="btn btn-info">Add Game</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form> <!--FORM ENDS HERE-->
+            </div>  <!--Modal Body-->
+
+        </div> <!--Modal Content-->
+    </div> <!--Modal Dialog-->
+</div>
+
+<!--************************Edit/Delete Games*****************************-->
+
+<h2>Edit Games</h2>
+
+<ul class="GameList" style="list-style-type:none">
+    @Html.Raw(ListHelp.FullGameListString())
+</ul>

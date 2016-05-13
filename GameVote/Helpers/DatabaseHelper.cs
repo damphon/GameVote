@@ -25,8 +25,8 @@ namespace GameVote.Helpers
                     command.Parameters.AddWithValue("@ImageURL", image);
                     command.Parameters.AddWithValue("@MinPlayers", min);
                     command.Parameters.AddWithValue("@MaxPlayers", max);
-                    command.Parameters.AddWithValue("@HasPlayed", time);
-                    command.Parameters.AddWithValue("@Duration", played);
+                    command.Parameters.AddWithValue("@HasPlayed", played);
+                    command.Parameters.AddWithValue("@Duration", time);
 
                     try
                     {
@@ -60,9 +60,9 @@ namespace GameVote.Helpers
                             GameList.name = reader.GetString(reader.GetOrdinal("Name"));
                             GameList.description = reader.GetString(reader.GetOrdinal("Description"));
                             GameList.image = reader.GetString(reader.GetOrdinal("ImageURL"));
-                            GameList.min = reader.GetInt32(reader.GetOrdinal("MinPlayers"));
-                            GameList.max = reader.GetInt32(reader.GetOrdinal("MaxPlayers"));
-                            GameList.time = reader.GetInt32(reader.GetOrdinal("Duration"));
+                            GameList.min = reader.GetByte(reader.GetOrdinal("MinPlayers"));
+                            GameList.max = reader.GetByte(reader.GetOrdinal("MaxPlayers"));
+                            GameList.time = reader.GetInt16(reader.GetOrdinal("Duration"));
                             GameList.played = (bool)reader["HasPlayed"];
 
                             ListOfGames.Add(GameList);
