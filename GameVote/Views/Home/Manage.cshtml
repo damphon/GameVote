@@ -4,3 +4,92 @@
 <h2>@ViewBag.Title.</h2>
 
 <!--This page for adding/editing/removing games from DB-->
+
+<form class="form-horizontal">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>Form Name</legend>
+
+        <!-- Get the Games Title-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="formName">Game Name</label>
+            <div class="col-md-4">
+                <input id="formName" name="formName" placeholder="" class="form-control input-md" required="" type="text">
+
+            </div>
+        </div>
+
+        <!-- Get a Description of the Game -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="formDescription">Game Description</label>
+            <div class="col-md-4">
+                <textarea class="form-control" id="formDescription" name="formDescription"></textarea>
+            </div>
+        </div>
+
+        <!-- Link to a URL of the Game-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="formImage">Image URL</label>
+            <div class="col-md-4">
+                <input id="formImage" name="formImage" placeholder="https://www.website.com/image.jpg" class="form-control input-md" type="text">
+
+            </div>
+        </div>
+
+        <!-- Get the Minumum number of players needed to play-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="formMinPlayers">Min Players</label>
+            <div class="col-md-1">
+                <input id="formMinPlayers" name="formMinPlayers" placeholder="1" class="form-control input-md" required="" type="number">
+
+            </div>
+        </div>
+
+        <!-- Get the max number of players that can play-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="formMaxPlayers">Max Players</label>
+            <div class="col-md-1">
+                <input id="formMaxPlayers" name="formMaxPlayers" placeholder="4" class="form-control input-md" required="" type="number">
+
+            </div>
+        </div>
+
+        <!-- Get the playtime in Minuetes-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="formTime">Play Time</label>
+            <div class="col-md-4">
+                <input id="formTime" name="formTime" placeholder="120" class="form-control input-md" required="" type="number">
+                <span class="help-block">Please enter playtime in minutes</span>
+            </div>
+        </div>
+
+        <!-- Discover whether or not this game has already been played -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="formPlayed">New Game?</label>
+            <div class="col-md-4">
+                <div class="radio">
+                    <label for="formPlayed-0">
+                        <input name="formPlayed" id="formPlayed-0" value="False" checked="checked" type="radio">
+                        We played this
+                    </label>
+                </div>
+                <div class="radio">
+                    <label for="formPlayed-1">
+                        <input name="formPlayed" id="formPlayed-1" value="True" type="radio">
+                        Never Played
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="submitButton"></label>
+            <div class="col-md-4">
+                <button id="submitButton" name="submitButton" class="btn btn-info">Add Game</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
