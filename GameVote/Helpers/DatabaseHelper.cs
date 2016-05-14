@@ -73,6 +73,37 @@ namespace GameVote.Helpers
             return ListOfGames;
         }
 
+        public List<GameModels> GetGame(string uid)
+        {
+            var GameEntry = new List<GameModels>();
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MCDBConnection"].ToString()))
+            {
+                connection.Open();
+                string query = String.Format("SELECT * FROM GameList WHERE [Key] = '{0}'", uid);
+                using (var command = new SqlCommand(query, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var GameList = new GameModels();
+                            GameList.uid = reader.GetGuid(reader.GetOrdinal("Key"));
+                            GameList.name = reader.GetString(reader.GetOrdinal("Name"));
+                            GameList.description = reader.GetString(reader.GetOrdinal("Description"));
+                            GameList.image = reader.GetString(reader.GetOrdinal("ImageURL"));
+                            GameList.min = reader.GetByte(reader.GetOrdinal("MinPlayers"));
+                            GameList.max = reader.GetByte(reader.GetOrdinal("MaxPlayers"));
+                            GameList.time = reader.GetInt16(reader.GetOrdinal("Duration"));
+                            GameList.played = (bool)reader["HasPlayed"];
+
+                            GameEntry.Add(GameList);
+                        }
+                    }
+                }
+            }
+            return GameEntry;
+        }
+
         //Add a way to modify an existing entry
 
         public string RemoveGame(string uid)
@@ -83,7 +114,7 @@ namespace GameVote.Helpers
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "DELETE FROM GameList WHERE KEY = @Key";
+                    command.CommandText = "DELETE FROM GameList WHERE [Key] = @Key";
                     command.Parameters.AddWithValue("@Key", uid);
 
                     try

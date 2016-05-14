@@ -71,5 +71,18 @@ namespace GameVote.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(string uid)
+        {
+            GameModels.Delete(uid);
+            return Redirect("~/Home/Manage");
+        }
     }
 }

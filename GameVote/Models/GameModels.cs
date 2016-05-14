@@ -18,6 +18,7 @@ namespace GameVote.Models
         public bool? played { get; set; }
         public Guid uid { get; set; }
 
+        //Gat list of all games
         public static List<GameModels> GameList()
         {
             DatabaseHelper dbhelp = new DatabaseHelper();
@@ -25,9 +26,53 @@ namespace GameVote.Models
             return FullList;
         }
 
+        //Get a single Game 
+        public static List<GameModels> SingleGame(string uid)
+        {
+            DatabaseHelper dbhelp = new DatabaseHelper();
+            List<GameModels> Game = dbhelp.GetGame(uid);
+            return Game;
+        }
+
+        //Delete Game 
+        public static string Delete(string uid)
+        {
+            DatabaseHelper dbhelp = new DatabaseHelper();
+            return dbhelp.RemoveGame(uid);
+        }
+
+        //Get Full list of games as String
         public string FullGameListString()
         {
             var List = GameList();
+            string GameString = "";
+            foreach (var game in List)
+            {
+                StringBuilder sb = new StringBuilder(GameString);
+                sb.Append("<li class='GameItem'><h2 class='GameName'>");
+                sb.Append(game.name);
+                sb.Append("</h2><img src='");
+                sb.Append(game.image);
+                sb.Append("' Height = '150' class = 'GameImage'/><p class='GameDescription'>");
+                sb.Append(game.description);
+                sb.Append("</p><p class = 'GameStats'>Entertains ");
+                sb.Append(game.min);
+                sb.Append(" - ");
+                sb.Append(game.max);
+                sb.Append(" players for ");
+                sb.Append(game.time);
+                sb.Append("Min.</p><a href='/Home/Edit/");
+                sb.Append(game.uid);
+                sb.Append("' class='GameEdit'>Edit</a></li>");
+                GameString = sb.ToString();
+            }
+            return GameString;
+        }
+
+        //Get Single Game as String
+        public string SingleGameString(string uid)
+        {
+            var List = SingleGame(uid);
             string GameString = "";
             foreach (var game in List)
             {
