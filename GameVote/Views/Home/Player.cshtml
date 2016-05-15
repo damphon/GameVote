@@ -1,0 +1,95 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string PlayerName = Path.GetFileName(Request.Url.ToString());
+    ViewBag.Title = PlayerName;
+}
+
+<h2>@PlayerName</h2>
+
+<div class="container-fluid">
+        
+        <section class="row">
+            <div class="col-lg-6">
+                <a href="~/Home/PlayerChoice/@PlayerName" class="dash_button">Vote on List</a>
+            </div>
+            <div class="col-lg-6">
+                <!--************************New List*****************************-->
+                <!--Modal Buttonn-->
+                <div class="wrapper">
+                    <button type="button" class="dash_button" data-toggle="modal" data-target="#myModal">Create New List</button>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" id="gallerybtn" class="close" data-dismiss="modal">&times;</button>
+                                <h3 class="modal-title">What types of games do you want to play?</h3>
+                            </div>
+                            <div class="modal-body">
+
+                                <!--FORM STARTS HERE-->
+                                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                    <fieldset>
+
+                                        <!-- Form Name -->
+                                        <legend>Form Name</legend>
+
+                                        <!-- Select Basic -->
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="selectbasic">Players</label>
+                                            <div class="col-md-4">
+                                                <select id="formPlayers" name="formPlayers" class="form-control">
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                    <option value="4">Four</option>
+                                                    <option value="5">Five</option>
+                                                    <option value="6">Six</option>
+                                                    <option value="7">Seven</option>
+                                                    <option value="8">Eight</option>
+                                                    <option value="300">More than Eight</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Select Basic -->
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="formPlayTime">Playtime</label>
+                                            <div class="col-md-4">
+                                                <select id="formPlayTime" name="formPlayTime" class="form-control">
+                                                    <option value="30">Half hour</option>
+                                                    <option value="60">One Hour</option>
+                                                    <option value="120">Two Hours</option>
+                                                    <option value="180">Three Hours</option>
+                                                    <option value="240">Four Hours</option>
+                                                    <option value="9999">More then Four Hours</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!--Pass the player name along-->
+                                        <input type="hidden" name="formPlayerName" value="@PlayerName">
+
+                                        <!-- Button (Double) -->
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="button1id"></label>
+                                            <div class="col-md-8">
+                                                <button id="button1id" name="button1id" class="btn btn-success">Query</button>
+                                                <button id="button2id" name="button2id" class="btn btn-danger">Cancel</button>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </form> <!--FORM ENDS HERE-->
+                            </div>  <!--Modal Body-->
+
+                        </div> <!--Modal Content-->
+                    </div> <!--Modal Dialog-->
+                </div>
+            </div>
+        </section>
+</div>

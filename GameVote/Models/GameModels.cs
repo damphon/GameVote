@@ -34,6 +34,42 @@ namespace GameVote.Models
             return Game;
         }
 
+        public string GameListQuery(int Players, int PlayTime)
+        {
+            List<GameModels> FullList = GameList();
+            string GameQuery = "";
+            foreach (var game in FullList)
+            {
+                if((game.min >= Players) && (game.max <= Players))
+                    {
+                        int Time = game.time;
+                        if (game.played == false)
+                            Time += 60;
+                        if(Time <= PlayTime)
+                        {
+                            StringBuilder sb = new StringBuilder(GameQuery);
+                            sb.Append("<li class='GameItem'><h2 class='GameName'>");
+                            sb.Append(game.name);
+                            sb.Append("</h2><img src='");
+                            sb.Append(game.image);
+                            sb.Append("' Height = '150' class = 'GameImage'/><p class='GameDescription'>");
+                            sb.Append(game.description);
+                            sb.Append("</p><p class = 'GameStats'>Entertains ");
+                            sb.Append(game.min);
+                            sb.Append(" - ");
+                            sb.Append(game.max);
+                            sb.Append(" players for ");
+                            sb.Append(game.time);
+                            sb.Append("Min.</p><a href='/Home/Edit/");
+                            sb.Append(game.uid);
+                            sb.Append("' class='GameEdit'>Edit</a></li>");
+                            GameQuery = sb.ToString();
+                        }
+                    }
+            }
+            return GameQuery;
+        }
+
         //Delete Game 
         public static string Delete(string uid)
         {

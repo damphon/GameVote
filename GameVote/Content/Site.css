@@ -22,3 +22,19 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#BigButton{
+    margin-bottom: 20px;
+}
+
+.dash_button{
+	background: grey;
+	color: white;
+	border-radius: 5px;
+	box-shadow: inset 3px 3px 1px rgba(255,255,255,0.3);
+	line-height: 2em;
+	padding: .5em 1em .5em 1em;
+	text-decoration: none;
+	text-transform:uppercase;
+	font-size:2em;
+}

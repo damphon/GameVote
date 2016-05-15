@@ -10,6 +10,7 @@ namespace GameVote.Controllers
 {
     public class HomeController : Controller
     {
+        string GameQuery = "Query has not been run yet!";
         public ActionResult Index()
         {
             return View();
@@ -42,33 +43,32 @@ namespace GameVote.Controllers
             return View();
         }
 
-        public ActionResult David()
+        [HttpGet]
+       public ActionResult Player()
         {
             return View();
         }
 
-        public ActionResult Connie()
+        [HttpPost]
+        public ActionResult Player(int formPlayers, int formPlayTime, string formPlayerName)
         {
+            GameModels List = new GameModels();
+            GameQuery = List.GameListQuery(formPlayers, formPlayTime); //THIS IS NOT PERSISTANT
+            return Redirect("~/Home/PlayerChoice/" + formPlayerName);
+        }
+
+        [HttpGet]
+        public ActionResult PlayerChoice()
+        {
+            //Query DB for items matching the needed playtime/players 
+            ViewBag.Query = GameQuery;
             return View();
         }
 
-        public ActionResult Gary()
+        [HttpPost]
+        public ActionResult PlayerChoice(string formPlayerName, string uid1, string uid2, string uid3)
         {
-            return View();
-        }
-
-        public ActionResult Jose()
-        {
-            return View();
-        }
-
-        public ActionResult Jeremy()
-        {
-            return View();
-        }
-
-        public ActionResult Sam()
-        {
+            //Make a temp database and redirect to the voteing page for the player
             return View();
         }
 
