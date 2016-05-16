@@ -5,12 +5,12 @@ using System.Web;
 using System.Web.Mvc;
 using GameVote.Models;
 using GameVote.Helpers;
+using GameVote.Properties;
 
 namespace GameVote.Controllers
 {
     public class HomeController : Controller
     {
-        string GameQuery = "Query has not been run yet!";
         public ActionResult Index()
         {
             return View();
@@ -53,15 +53,17 @@ namespace GameVote.Controllers
         public ActionResult Player(int formPlayers, int formPlayTime, string formPlayerName)
         {
             GameModels List = new GameModels();
-            GameQuery = List.GameListQuery(formPlayers, formPlayTime); //THIS IS NOT PERSISTANT
+            string query = List.GameListQuery(formPlayers, formPlayTime);
+            var path = Server.MapPath(@"~/Content/QueryResults.txt");
+            System.IO.File.WriteAllText(path, query);
             return Redirect("~/Home/PlayerChoice/" + formPlayerName);
         }
 
         [HttpGet]
         public ActionResult PlayerChoice()
         {
-            //Query DB for items matching the needed playtime/players 
-            ViewBag.Query = GameQuery;
+            var path = Server.MapPath(@"~/Content/QueryResults.txt");
+            ViewBag.Query = System.IO.File.ReadAllText(path);
             return View();
         }
 

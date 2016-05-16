@@ -40,7 +40,7 @@ namespace GameVote.Models
             string GameQuery = "";
             foreach (var game in FullList)
             {
-                if((game.min >= Players) && (game.max <= Players))
+                if((game.min <= Players) && (game.max >= Players))
                     {
                         int Time = game.time;
                         if (game.played == false)
