@@ -38,3 +38,29 @@ textarea {
 	text-transform:uppercase;
 	font-size:2em;
 }
+
+.GameName{
+    text-align: center;
+    margin-top: -10px;
+}
+
+.GameImage{
+    float: left;
+    margin-right: 10px;
+}
+
+.GameStats{
+    float: right;
+    font-weight:bold;
+}
+
+.GameEdit{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 0px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+}

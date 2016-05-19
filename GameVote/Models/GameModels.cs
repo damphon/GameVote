@@ -48,7 +48,7 @@ namespace GameVote.Models
                         if(Time <= PlayTime)
                         {
                             StringBuilder sb = new StringBuilder(GameQuery);
-                            sb.Append("<li class='GameItem'><h2 class='GameName'>");
+                            sb.Append("<li class='well'><h2 class='GameName'>");
                             sb.Append(game.name);
                             sb.Append("</h2><img src='");
                             sb.Append(game.image);
@@ -85,7 +85,7 @@ namespace GameVote.Models
             foreach (var game in List)
             {
                 StringBuilder sb = new StringBuilder(GameString);
-                sb.Append("<li class='GameItem'><h2 class='GameName'>");
+                sb.Append("<li class='well'><h2 class='GameName'>");
                 sb.Append(game.name);
                 sb.Append("</h2><img src='");
                 sb.Append(game.image);
@@ -113,7 +113,7 @@ namespace GameVote.Models
             foreach (var game in List)
             {
                 StringBuilder sb = new StringBuilder(GameString);
-                sb.Append("<li class='GameItem'><h2 class='GameName'>");
+                sb.Append("<li class='well'><h2 class='GameName'>");
                 sb.Append(game.name);
                 sb.Append("</h2><img src='");
                 sb.Append(game.image);
