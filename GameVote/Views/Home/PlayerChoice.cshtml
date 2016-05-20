@@ -4,9 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script>
+    function gameSelect(uid) {
+        var selector = '#' + uid;
+        $(selector).click().attr('class', 'well GameSelected');
+    }
+</script>
+
 <h2>Choose your games!</h2>
 
 <ul class="GameList" style="list-style-type:none">
     @Html.Raw(ViewBag.Query)
 </ul>
+
 

@@ -48,7 +48,9 @@ namespace GameVote.Models
                         if(Time <= PlayTime)
                         {
                             StringBuilder sb = new StringBuilder(GameQuery);
-                            sb.Append("<li class='well'><h2 class='GameName'>");
+                            sb.Append("<li id='");
+                            sb.Append(game.uid);
+                            sb.Append("' class='well NotSelected'><h2 class='GameName'>");
                             sb.Append(game.name);
                             sb.Append("</h2><img src='");
                             sb.Append(game.image);
@@ -60,9 +62,7 @@ namespace GameVote.Models
                             sb.Append(game.max);
                             sb.Append(" players for ");
                             sb.Append(game.time);
-                            sb.Append("Min.</p><a href='/Home/Edit/");
-                            sb.Append(game.uid);
-                            sb.Append("' class='GameEdit'>Edit</a></li>");
+                            sb.Append("Min.</p><button onClick=\"gameSelect('" + game.uid + "')\">Select Game</button></li>");
                             GameQuery = sb.ToString();
                         }
                     }
