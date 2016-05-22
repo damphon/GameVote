@@ -130,5 +130,56 @@ namespace GameVote.Helpers
             }
             return "Game has been destroyed";
         }
+        /**********************************Player Vote Database Items below this line********************************************/
+        public string PlayerVote(string username, string gamekey, int vote)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MCDBConnection"].ToString()))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "INSERT INTO TempGameList (UserName, GameKey, Vote) VALUES (@Name, @Game, @Rank)";
+                    command.Parameters.AddWithValue("@Name", username);
+                    command.Parameters.AddWithValue("@Description", gamekey);
+                    command.Parameters.AddWithValue("@ImageURL", vote);
+                    
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SqlException e)
+                    {
+                        return "Error: " + e.Message;
+                    }
+                }
+            }
+            return "Votes Submitted";
+        }
+
+        public string DeleteVoteList()
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MCDBConnection"].ToString()))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "DELETE * FROM GameList";
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SqlException e)
+                    {
+                        return "Error: " + e.Message;
+                    }
+                }
+            }
+            return "Game has been destroyed";
+        }
     }
 }

@@ -31,15 +31,20 @@ namespace GameVote.Controllers
 
         [HttpPost]
         //Description and Image have default values in case they are not filled in.
-        public ActionResult Manage(String formName, int formMinPlayers, int formMaxPlayers, int formTime, int formPlayed, string formDescription = "No Information Provided", string formImage = "~/Content/Images/SW.jpg") 
+        public ActionResult Manage(String formName, int formMinPlayers, int formMaxPlayers, int formTime, int formPlayed, string formDescription, string formImage) 
         {
             bool hasPlayed = false;
+            string Description = formDescription;
+            string Image = formImage;
+
             DatabaseHelper dbhelp = new DatabaseHelper();
 
             //If it is 1 then hasPlayed remains false, no need for an else.
             if (formPlayed == 0) hasPlayed = true;
-            
-            dbhelp.NewGame(formName, formDescription, formImage, formMinPlayers, formMaxPlayers, formTime, hasPlayed);
+            if (Description == "") Description = "No Information Provided";
+            if (Image == "") Image = "http://gn.jeremytoler.net/Content/Images/SW.jpg";
+
+            dbhelp.NewGame(formName, Description, Image, formMinPlayers, formMaxPlayers, formTime, hasPlayed);
             return View();
         }
 
@@ -68,9 +73,10 @@ namespace GameVote.Controllers
         }
 
         [HttpPost]
-        public ActionResult PlayerChoice(string formPlayerName, string uid1, string uid2, string uid3)
+        public ActionResult PlayerChoice(string formPlayerName)
         {
-            //Make a temp database and redirect to the voteing page for the player
+            GameModels GameHelper = new GameModels();
+            //GameHelper.Vote(formPlayerName, uid1, pos);
             return View();
         }
 

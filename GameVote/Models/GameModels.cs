@@ -62,8 +62,9 @@ namespace GameVote.Models
                             sb.Append(game.max);
                             sb.Append(" players for ");
                             sb.Append(game.time);
-                            sb.Append("Min.</p><button onClick=\"gameSelect('" + game.uid + "')\">Select Game</button></li>");
-                            GameQuery = sb.ToString();
+                            sb.Append("Min.</p><button onClick=\"gameSelect('" + game.uid + "')\">Select Game</button>");
+                            sb.Append("   Primary: <input type='radio' name='1' value='1'>  Secondary: <input type='radio' name='2' value='2'>  Tertiary: <input type='radio' name='3' value='3'></li>");
+                        GameQuery = sb.ToString();
                         }
                     }
             }
@@ -129,6 +130,13 @@ namespace GameVote.Models
                 GameString = sb.ToString();
             }
             return GameString;
+        } 
+        
+        public void Vote(string username, string gamekey, int vote)
+        {
+            DatabaseHelper dbhelp = new DatabaseHelper();
+            dbhelp.DeleteVoteList();
+            dbhelp.PlayerVote(username, gamekey, vote);
         }
     }
 }
