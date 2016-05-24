@@ -37,6 +37,9 @@ namespace GameVote.Models
         public string GameListQuery(int Players, int PlayTime)
         {
             List<GameModels> FullList = GameList();
+            DatabaseHelper dbhelp = new DatabaseHelper();
+            dbhelp.DeleteVoteList(); //Delete any existing vote results before making new query
+
             string GameQuery = "";
             foreach (var game in FullList)
             {
@@ -62,8 +65,7 @@ namespace GameVote.Models
                             sb.Append(game.max);
                             sb.Append(" players for ");
                             sb.Append(game.time);
-                            sb.Append("Min.</p><button onClick=\"gameSelect('" + game.uid + "')\">Select Game</button>");
-                            sb.Append("   Primary: <input type='radio' name='1' value='1'>  Secondary: <input type='radio' name='2' value='2'>  Tertiary: <input type='radio' name='3' value='3'></li>");
+                            sb.Append("</p>   Primary: <input class='VotePos' type='radio' name='" + game.uid + "' value='1'>  Secondary: <input class='VotePos' type='radio' name='" + game.uid + "' value='2'>  Tertiary: <input class='VotePos' type='radio' name='" + game.uid + "' value='3'>  Not Selected: <input type='radio' name='" + game.uid + "' value='0' checked='checked'>");
                         GameQuery = sb.ToString();
                         }
                     }
@@ -135,7 +137,6 @@ namespace GameVote.Models
         public void Vote(string username, string gamekey, int vote)
         {
             DatabaseHelper dbhelp = new DatabaseHelper();
-            dbhelp.DeleteVoteList();
             dbhelp.PlayerVote(username, gamekey, vote);
         }
     }

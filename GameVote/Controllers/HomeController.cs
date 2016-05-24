@@ -72,14 +72,6 @@ namespace GameVote.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult PlayerChoice(string formPlayerName)
-        {
-            GameModels GameHelper = new GameModels();
-            //GameHelper.Vote(formPlayerName, uid1, pos);
-            return View();
-        }
-
         [HttpGet]
         public ActionResult Edit()
         {

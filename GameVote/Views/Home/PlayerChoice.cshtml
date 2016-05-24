@@ -1,21 +1,31 @@
 ﻿
 @{
-    ViewBag.Title = "PlayerChoice";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string PlayerName = Path.GetFileName(Request.Url.ToString());
+    ViewBag.Title = PlayerName + " Please Vote";
+    ViewBag.Name = PlayerName;
+    GameVote.Models.GameModels GameHelper = new GameVote.Models.GameModels();
 }
 
-<script>
-    function gameSelect(uid) {
-        var selector = '#' + uid;
-        $(selector).click().attr('class', 'well GameSelected');
-    }
-</script>
+
 
 <h2>Choose your games!</h2>
+    <ul class="GameList" id="ListOfGames" name="@PlayerName" style="list-style-type:none">
+        @Html.Raw(ViewBag.Query)
+    </ul>
+    <button id="SubmitButton" name="SubmitButton" class="btn btn-success">Vote</button>
 
-<ul class="GameList" style="list-style-type:none">
-    @Html.Raw(ViewBag.Query)
-</ul>
+@section scripts{
+    <script>
+        $('#SubmitButton').click(function () {
+            var elem = document.getElementsByClassName("VotePos");
+            var name = '@(ViewBag.Name)';
+            for (var i = 0; i < elem.length; i++) {
+                if (elem[i].checked) {
+                    alert(elem[i].name + " POS " + elem[i].value + " was selected by " + name);
 
-
-<button id="submitButton" name="submitButton" class="btn btn-info" action="alert('Button does something');">Submit</button>
+                }
+            }
+        });
+    </script>
+}
