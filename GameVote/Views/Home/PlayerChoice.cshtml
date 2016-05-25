@@ -20,12 +20,18 @@
         $('#SubmitButton').click(function () {
             var elem = document.getElementsByClassName("VotePos");
             var name = '@(ViewBag.Name)';
+            var list = [];
             for (var i = 0; i < elem.length; i++) {
                 if (elem[i].checked) {
                     alert(elem[i].name + " POS " + elem[i].value + " was selected by " + name);
-
+                    var vote = {};
+                    vote.name = name;
+                    vote.game = elem[i].name;
+                    vote.pos = elem[i].value;
+                    list.push(vote);
                 }
             }
+            //POST list!
         });
     </script>
 }
