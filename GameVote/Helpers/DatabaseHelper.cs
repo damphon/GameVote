@@ -141,8 +141,8 @@ namespace GameVote.Helpers
                     command.CommandType = CommandType.Text;
                     command.CommandText = "INSERT INTO TempGameList (UserName, GameKey, Vote) VALUES (@Name, @Game, @Rank)";
                     command.Parameters.AddWithValue("@Name", username);
-                    command.Parameters.AddWithValue("@Description", gamekey);
-                    command.Parameters.AddWithValue("@ImageURL", vote);
+                    command.Parameters.AddWithValue("@Game", gamekey);
+                    command.Parameters.AddWithValue("@Rank", vote);
                     
                     try
                     {
@@ -166,7 +166,7 @@ namespace GameVote.Helpers
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "DELETE * FROM TempGameList";
+                    command.CommandText = "DELETE FROM TempGameList";
 
                     try
                     {

@@ -94,10 +94,10 @@ namespace GameVote.Controllers
         }
 
         [HttpPost]
-        public ActionResult VoteResults(string json)
+        public ActionResult VoteResults(IEnumerable<GameModels.VoteModel> jsonData)
         {
-            GameModels.VoteModel.Vote(json);
-            return View();
+            GameModels.VoteModel.Vote(jsonData);
+            return Json(new { success = true });
         }
     }
 }

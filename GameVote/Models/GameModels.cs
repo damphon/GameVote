@@ -147,11 +147,10 @@ namespace GameVote.Models
             public string game { get; set; }
             public int pos { get; set; }
 
-            public static void Vote(string json)
+            public static void Vote(IEnumerable<GameModels.VoteModel> json)
             {
                 DatabaseHelper dbhelp = new DatabaseHelper();
-                VoteListModel TempList = new JavaScriptSerializer().Deserialize<VoteListModel>(json);
-                foreach(var vote in TempList.list)
+                foreach(var vote in json)
                 {
                     dbhelp.PlayerVote(vote.name, vote.game, vote.pos);
                 }

@@ -36,14 +36,13 @@
           $.ajax({
               url: "@(ViewBag.ResultsURL)",
               type: "POST",
-              data: JSON.stringify(list),
               contentType: "application/json",
               dataType: "json",
+              data: JSON.stringify(list),
                 success: function (data) {
                     alert("Vote Accepted");
                 }
           })
-            alert("Done");
         });
     </script>
 }
