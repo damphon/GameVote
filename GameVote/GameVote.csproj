@@ -173,6 +173,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\VoteHelper.cs" />
     <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GameModels.cs" />
@@ -250,6 +251,7 @@
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Player.cshtml" />
     <Content Include="Views\Home\PlayerChoice.cshtml" />
+    <Content Include="Views\Home\VoteResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

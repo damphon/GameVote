@@ -5,6 +5,7 @@
     ViewBag.Title = PlayerName + " Please Vote";
     ViewBag.Name = PlayerName;
     GameVote.Models.GameModels GameHelper = new GameVote.Models.GameModels();
+    ViewBag.ResultsURL = Url.Action("VoteResults", "Home", routeValues: null, protocol: Request.Url.Scheme);
 }
 
 
@@ -21,9 +22,9 @@
             var elem = document.getElementsByClassName("VotePos");
             var name = '@(ViewBag.Name)';
             var list = [];
+            //Create list of objects
             for (var i = 0; i < elem.length; i++) {
                 if (elem[i].checked) {
-                    alert(elem[i].name + " POS " + elem[i].value + " was selected by " + name);
                     var vote = {};
                     vote.name = name;
                     vote.game = elem[i].name;
@@ -31,7 +32,18 @@
                     list.push(vote);
                 }
             }
-            //POST list!
+            //POST list of objects as json data for the server.
+          $.ajax({
+              url: "@(ViewBag.ResultsURL)",
+              type: "POST",
+              data: JSON.stringify(list),
+              contentType: "application/json",
+              dataType: "json",
+                success: function (data) {
+                    alert("Vote Accepted");
+                }
+          })
+            alert("Done");
         });
     </script>
 }

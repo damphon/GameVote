@@ -166,7 +166,7 @@ namespace GameVote.Helpers
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "DELETE * FROM GameList";
+                    command.CommandText = "DELETE * FROM TempGameList";
 
                     try
                     {
@@ -180,6 +180,32 @@ namespace GameVote.Helpers
                 }
             }
             return "Game has been destroyed";
+        }
+
+        public List<GameModels.VoteModel> GetVotes()
+        {
+            var ListOfVotes = new List<GameModels.VoteModel>();
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MCDBConnection"].ToString()))
+            {
+                connection.Open();
+                string query = "SELECT * FROM TempGameList";
+                using (var command = new SqlCommand(query, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var VoteList = new GameModels.VoteModel();
+                            VoteList.name = reader.GetString(reader.GetOrdinal("UserName"));
+                            VoteList.game = reader.GetString(reader.GetOrdinal("GameKey"));
+                            VoteList.pos = reader.GetInt16(reader.GetOrdinal("Vote"));
+
+                            ListOfVotes.Add(VoteList);
+                        }
+                    }
+                }
+            }
+            return ListOfVotes;
         }
     }
 }

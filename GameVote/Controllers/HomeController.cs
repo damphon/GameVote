@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using GameVote.Models;
 using GameVote.Helpers;
-using GameVote.Properties;
 
 namespace GameVote.Controllers
 {
@@ -72,6 +71,7 @@ namespace GameVote.Controllers
             return View();
         }
 
+
         [HttpGet]
         public ActionResult Edit()
         {
@@ -83,6 +83,21 @@ namespace GameVote.Controllers
         {
             GameModels.Delete(uid);
             return Redirect("~/Home/Manage");
+        }
+
+        [HttpGet]
+        public ActionResult VoteResults()
+        {
+            VoteHelper voteHelper = new VoteHelper();
+            ViewBag.result = voteHelper.PrintVotes();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult VoteResults(string json)
+        {
+            GameModels.VoteModel.Vote(json);
+            return View();
         }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using GameVote.Helpers;
 using System.Text;
+using Newtonsoft.Json;
+using System.Web.Script.Serialization;
 
 namespace GameVote.Models
 {
@@ -133,11 +135,33 @@ namespace GameVote.Models
             }
             return GameString;
         } 
-        
-        public void Vote(string username, string gamekey, int vote)
+
+        public class VoteListModel
         {
-            DatabaseHelper dbhelp = new DatabaseHelper();
-            dbhelp.PlayerVote(username, gamekey, vote);
+            public List<VoteModel> list { get; set; }
+        }
+
+        public class VoteModel
+        {
+            public string name { get; set; }
+            public string game { get; set; }
+            public int pos { get; set; }
+
+            public static void Vote(string json)
+            {
+                DatabaseHelper dbhelp = new DatabaseHelper();
+                VoteListModel TempList = new JavaScriptSerializer().Deserialize<VoteListModel>(json);
+                foreach(var vote in TempList.list)
+                {
+                    dbhelp.PlayerVote(vote.name, vote.game, vote.pos);
+                }
+            }
+        }
+
+        public class TallyModel
+        {
+            public string game { get; set; }
+            public int votes { get; set; }
         }
     }
 }
