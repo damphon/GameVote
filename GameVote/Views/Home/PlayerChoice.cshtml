@@ -15,6 +15,10 @@
         @Html.Raw(ViewBag.Query)
     </ul>
     <button id="SubmitButton" name="SubmitButton" class="btn btn-success">Vote</button>
+<br />
+<br />
+<br />
+@Html.ActionLink("Check Results", "VoteResults", "Home")
 
 @section scripts{
     <script>

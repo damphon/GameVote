@@ -198,7 +198,7 @@ namespace GameVote.Helpers
                             var VoteList = new GameModels.VoteModel();
                             VoteList.name = reader.GetString(reader.GetOrdinal("UserName"));
                             VoteList.game = reader.GetString(reader.GetOrdinal("GameKey"));
-                            VoteList.pos = reader.GetInt16(reader.GetOrdinal("Vote"));
+                            VoteList.pos = reader.GetByte(reader.GetOrdinal("Vote"));
 
                             ListOfVotes.Add(VoteList);
                         }
