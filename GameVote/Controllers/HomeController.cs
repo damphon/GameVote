@@ -90,6 +90,7 @@ namespace GameVote.Controllers
         {
             VoteHelper voteHelper = new VoteHelper();
             ViewBag.result = voteHelper.PrintVotes();
+            ViewBag.voters = voteHelper.GetVoters();
             return View();
         }
 

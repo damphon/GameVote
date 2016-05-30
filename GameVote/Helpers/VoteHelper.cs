@@ -95,5 +95,18 @@ namespace GameVote.Helpers
                 }
             }
         }
+
+        public List<string> GetVoters()
+        {
+            List<string> Voters = new List<string>();
+            foreach (var vote in votes)
+            {
+                if (!(Voters.Any(s => s.Contains(vote.name))))
+                {
+                    Voters.Add(vote.name);
+                }
+            }
+            return Voters;
+        }
     }
 }

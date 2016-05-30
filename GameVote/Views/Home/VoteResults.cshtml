@@ -1,11 +1,21 @@
 ﻿
 @{
     ViewBag.Title = "VoteResults";
+    List<string> voters = ViewBag.voters;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>VoteResults</h2>
+<h3>The following players have voted:</h3>
+<p>
+    @foreach(string s in voters)
+    {
+        @s<br />
+    }
+</p>
+<h3>The Winning Game is:</h3>
 <h1>@ViewBag.result</h1> 
+
+
 
 
 
