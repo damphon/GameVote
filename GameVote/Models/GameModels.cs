@@ -55,7 +55,7 @@ namespace GameVote.Models
                             StringBuilder sb = new StringBuilder(GameQuery);
                             sb.Append("<li id='");
                             sb.Append(game.uid);
-                            sb.Append("' class='well NotSelected'><h2 class='GameName'>");
+                            sb.Append("' class='well'><h2 class='GameName'>");
                             sb.Append(game.name);
                             sb.Append("</h2><img src='");
                             sb.Append(game.image);
