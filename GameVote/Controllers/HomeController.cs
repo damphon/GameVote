@@ -29,7 +29,6 @@ namespace GameVote.Controllers
         }
 
         [HttpPost]
-        //Description and Image have default values in case they are not filled in.
         public ActionResult Manage(String formName, int formMinPlayers, int formMaxPlayers, int formTime, int formPlayed, string formDescription, string formImage) 
         {
             bool hasPlayed = false;
@@ -47,24 +46,19 @@ namespace GameVote.Controllers
             return View();
         }
 
-        [HttpGet]
-       public ActionResult Player()
-        {
-            return View();
-        }
 
         [HttpPost]
-        public ActionResult Player(int formPlayers, int formPlayTime, string formPlayerName)
+        public ActionResult CreateList(int formPlayers, int formPlayTime)
         {
             GameModels List = new GameModels();
             string query = List.GameListQuery(formPlayers, formPlayTime);
             var path = Server.MapPath(@"~/Content/QueryResults.txt");
             System.IO.File.WriteAllText(path, query);
-            return Redirect("~/Home/PlayerChoice/" + formPlayerName);
+            return Redirect("~/Home/");
         }
 
         [HttpGet]
-        public ActionResult PlayerChoice()
+        public ActionResult Player()
         {
             var path = Server.MapPath(@"~/Content/QueryResults.txt");
             ViewBag.Query = System.IO.File.ReadAllText(path);

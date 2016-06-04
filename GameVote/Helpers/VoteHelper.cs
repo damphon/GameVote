@@ -58,7 +58,7 @@ namespace GameVote.Helpers
 
         public bool CheckForWin(int i)
         {
-            int NeededVotes = (voters * i) / 2;
+            int NeededVotes = ((voters * i) / 2) + 1;
             foreach(var vote in tally)
             {
                 if(vote.votes >= NeededVotes)

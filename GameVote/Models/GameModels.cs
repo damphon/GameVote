@@ -53,22 +53,20 @@ namespace GameVote.Models
                         if(Time <= PlayTime)
                         {
                             StringBuilder sb = new StringBuilder(GameQuery);
-                            sb.Append("<li id='");
-                            sb.Append(game.uid);
-                            sb.Append("' class='well'><h2 class='GameName'>");
+                            sb.Append("<li class='well'><h2 class='GameName'>");
                             sb.Append(game.name);
-                            sb.Append("</h2><img src='");
-                            sb.Append(game.image);
-                            sb.Append("' Height = '150' class = 'GameImage'/><p class='GameDescription'>");
-                            sb.Append(game.description);
-                            sb.Append("</p><p class = 'GameStats'>Entertains ");
+                            sb.Append("</h2><p class = 'GameStats'>Entertains ");
                             sb.Append(game.min);
                             sb.Append(" - ");
                             sb.Append(game.max);
                             sb.Append(" players for ");
                             sb.Append(game.time);
-                            sb.Append("</p>   Primary: <input class='VotePos' type='radio' name='" + game.uid + "' value='1'>  Secondary: <input class='VotePos' type='radio' name='" + game.uid + "' value='2'>  Tertiary: <input class='VotePos' type='radio' name='" + game.uid + "' value='3'>  Not Selected: <input type='radio' name='" + game.uid + "' value='0' checked='checked'>");
-                        GameQuery = sb.ToString();
+                            sb.Append("Min.</p>   Primary: <input class='VotePos' type='radio' name='" + game.uid + "' value='1'>  Secondary: <input class='VotePos' type='radio' name='" + game.uid + "' value='2'>  Tertiary: <input class='VotePos' type='radio' name='" + game.uid + "' value='3'>  Not Selected: <input type='radio' name='" + game.uid + "' value='0' checked='checked'><img src='");
+                            sb.Append(game.image);
+                            sb.Append("' Height = '150' class = 'GameImage'/><p class='GameDescription'>");
+                            sb.Append(game.description);
+                            sb.Append("</p>");
+                            GameQuery = sb.ToString();
                         }
                     }
             }
@@ -90,21 +88,21 @@ namespace GameVote.Models
             foreach (var game in List)
             {
                 StringBuilder sb = new StringBuilder(GameString);
-                sb.Append("<li class='well'><h2 class='GameName'>");
+                sb.Append("<li class='well'><a href='/Home/Edit/");
+                sb.Append(game.uid);
+                sb.Append("' class='GameEdit'>Edit</a><h2 class='GameName'>");
                 sb.Append(game.name);
-                sb.Append("</h2><img src='");
-                sb.Append(game.image);
-                sb.Append("' Height = '150' class = 'GameImage'/><p class='GameDescription'>");
-                sb.Append(game.description);
-                sb.Append("</p><p class = 'GameStats'>Entertains ");
+                sb.Append("</h2><p class = 'GameStats'>Entertains ");
                 sb.Append(game.min);
                 sb.Append(" - ");
                 sb.Append(game.max);
                 sb.Append(" players for ");
                 sb.Append(game.time);
-                sb.Append("Min.</p><a href='/Home/Edit/");
-                sb.Append(game.uid);
-                sb.Append("' class='GameEdit'>Edit</a></li>");
+                sb.Append("Min.</p><img src='");
+                sb.Append(game.image);
+                sb.Append("' Height = '150' class = 'GameImage'/><p class='GameDescription'>");
+                sb.Append(game.description);
+                sb.Append("</p>");
                 GameString = sb.ToString();
             }
             return GameString;

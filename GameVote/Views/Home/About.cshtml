@@ -3,4 +3,16 @@
 }
 <h2>@ViewBag.Title</h2>
 
-<p>Put in a description of how the voting actualy works. explaining that the games you select are your permanant non-moving votes and your 1/2/3 are votes that float to another game if you lose</p>
+<p>Uses a voting system similar to Single Transferable Vote. You get 3 votes, in order of primary -> tertiary. The program then takes the primary votes and checks to see if there is a game that has half+1 of all the votes or more. If there is it wins. If not it takes the primary and secondary votes and checks if there is a game with half+1 of all the primary and secondary votes or more. It does this again for tertiary.</p>
+
+<img src="http://gn.jeremytoler.net/Content/Images/WinCheck.png" alt="Image of Source Code"/>
+<br />
+<br />
+<p>This is an alpha version, I have not added an fix for if there is a tie (right now it picks the first game it finds which is semi-random) or if there is no winner. It also only works for our game group right now.</p>
+
+<h2>Change Log</h2>
+<ul class="Changelog">
+    <li>6/2 - formatted the way games are displayed, and added this changelog!</li>
+    <li>6/3 - Changed were the create list link is, and reduced nomber of clicks needed to vote. Updated about page to have more info about how the vote works.</li>
+    <li>6/3 - Changed vote to use half+1 instead of half.</li>
+</ul>

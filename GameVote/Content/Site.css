@@ -50,8 +50,11 @@ textarea {
 }
 
 .GameStats{
-    float: right;
     font-weight:bold;
+    border: inset;
+    display: inline-block;
+    position:relative;
+    left:2px;
 }
 
 .GameEdit{
@@ -63,4 +66,16 @@ textarea {
     text-decoration: none;
     display: inline-block;
     font-size: 1em;
+    float: right;
+}
+
+.well{
+    height: 230px;
+    overflow: hidden;
+    position: relative;
+}
+
+h2{
+    font-size:1.5em;
+    font-weight:bold;
 }

@@ -191,6 +191,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\SW.jpg" />
+    <Content Include="Content\Images\WinCheck.png" />
     <Content Include="Content\QueryResults.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -251,7 +252,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Player.cshtml" />
-    <Content Include="Views\Home\PlayerChoice.cshtml" />
     <Content Include="Views\Home\VoteResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
