@@ -35,6 +35,7 @@ namespace GameVote.Helpers
         public string Tally()
         {
             string win = "Error: Tally could not determine winner";
+            Random rand = new Random();
             int i = 1;
             do
             {
@@ -45,28 +46,26 @@ namespace GameVote.Helpers
                     tally.Where(y => y.game == vote.game).ToList().ForEach(z => z.votes += 1);
                 }
                 i++;
+                if (i > 3) break; //This will use handle win to get game with most votes.
             } while (CheckForWin(i-1) != true);
-            //After finding that something won, get the name of the game that won and return it.
-            int MostVotes = tally.Max(m => m.votes);
-            foreach(var game in tally)
-            {
-                if (game.votes >= MostVotes)
-                    win = game.game;
-            }
+            //After finding that something won, Remove all games from the list that did not win.
+            HandleWin(tally.Max(m => m.votes));
+            //Randomly select a winner from games that did win in case of tie.
+            win = tally[rand.Next(0, tally.Count)].game;
             return win;
         }
 
-        public bool CheckForWin(int i)
+        public void GetGames()
         {
-            int NeededVotes = ((voters * i) / 2) + 1;
-            foreach(var vote in tally)
+            List<string> Games = new List<string>();
+            foreach (var vote in votes)
             {
-                if(vote.votes >= NeededVotes)
+                if (!(Games.Any(s => s.Contains(vote.game))))
                 {
-                    return true;
+                    Games.Add(vote.game);
+                    tally.Add(new GameModels.TallyModel() { game = vote.game, votes = 0 });
                 }
             }
-            return false;
         }
 
         public int NumberOfVoters()
@@ -83,15 +82,29 @@ namespace GameVote.Helpers
             return voters;
         }
 
-        public void GetGames()
+        public bool CheckForWin(int i)
         {
-            List<string> Games = new List<string>();
-            foreach(var vote in votes)
+            int NeededVotes = (voters * i) / 2;
+            if (i == 1) NeededVotes++;//need half +1 to win, but that does not work once voters < votes.
+            foreach (var vote in tally)
             {
-                if(!(Games.Any(s => s.Contains(vote.game))))
+                if (vote.votes >= NeededVotes)
                 {
-                    Games.Add(vote.game);
-                    tally.Add(new GameModels.TallyModel() { game = vote.game, votes = 0 });
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void HandleWin(int MostVotes)
+        {
+            //Need temp list or modifications to tally will break the loop.
+            List<GameModels.TallyModel> Temp = tally.ToList();
+            foreach (var game in Temp)
+            {
+                if (game.votes < MostVotes)
+                {
+                    tally.Remove(game);
                 }
             }
         }
