@@ -3,24 +3,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     string CurrentGame = Path.GetFileName(Request.Url.ToString());
     GameVote.Models.GameModels ListHelp = new GameVote.Models.GameModels();
-
 }
 
 <h2>Edit</h2>
-
 
 <ul class="GameList" style="list-style-type:none">
     @Html.Raw(ListHelp.SingleGameString(CurrentGame))
 </ul>
 
-<!--************************Delete Game*****************************-->
-<!--Modal Buttonn-->
-<div class="wrapper">
-    <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModal">Remove Game From List</button>
+<!--************************Edit Buttons*****************************-->
+<div class="container-fluid">
+    <center>
+        <div class="row">
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#deleteModal">Remove Game From List</button>
+            </div>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#editModal">Edit Game Info</button>
+            </div>
+            <!--************************Played Game*****************************-->
+            <div class="col-sm-4">
+                <form action="@Url.Action("SetPlayed", "Home")" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <fieldset>
+                        <input type="hidden" name="uid" value="@CurrentGame">
+                        <button name="Submit Button" class="btn btn-lg">We Played This</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </center>
 </div>
-
+<!--************************Delete Game*****************************-->
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="deleteModal" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -32,14 +47,15 @@
             <div class="modal-body">
 
                 <!--FORM STARTS HERE-->
-                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <form action="@Url.Action("Delete", "Home")" method="post" enctype="multipart/form-data" class="form-horizontal">
                     <fieldset>
                         <input type="hidden" name="uid" value="@CurrentGame">
                         <!-- Delete Button -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="submitButton"></label>
-                            <div class="col-md-4">
-                                <button id="submitButton" name="submitButton" class="btn btn-danger">Delete Game</button>
+                            <div class="col-md-8">
+                                <button id="submitButton" name="submitButton" class="btn btn-success">Delete Game</button>
+                                <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </fieldset>
@@ -48,4 +64,131 @@
 
         </div> <!--Modal Content-->
     </div> <!--Modal Dialog-->
+</div><!--End Modal-->
+<!--************************Edit Game*****************************-->
+<!-- Modal -->
+<div class="modal fade" id="editModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="gallerybtn" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">Edit Game Entry:</h3>
+            </div>
+            <div class="modal-body">
+
+                <!--FORM STARTS HERE-->
+                <form id="editForm" action="@Url.Action("Edit", "Home")" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <fieldset>
+                        <!-- Get the Games Title-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formName">Game Name</label>
+                            <div class="col-md-6">
+                                <input id="formName" name="formName" placeholder="" class="form-control input-md" required type="text">
+
+                            </div>
+                        </div>
+
+                        <!-- Get a Description of the Game -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formDescription">Game Description</label>
+                            <div class="col-md-6">
+                                <textarea class="form-control" id="formDescription" name="formDescription"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Link to a URL of the Game-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formImage">Image URL</label>
+                            <div class="col-md-6">
+                                <input id="formImage" name="formImage" placeholder="https://www.website.com/image.jpg" class="form-control input-md" type="text">
+
+                            </div>
+                        </div>
+
+                        <!-- Get the Minumum number of players needed to play-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formMinPlayers">Min Players</label>
+                            <div class="col-md-2">
+                                <input id="formMinPlayers" name="formMinPlayers" placeholder="1" class="form-control input-md" required type="number">
+
+                            </div>
+                        </div>
+
+                        <!-- Get the max number of players that can play-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formMaxPlayers">Max Players</label>
+                            <div class="col-md-2">
+                                <input id="formMaxPlayers" name="formMaxPlayers" placeholder="4" class="form-control input-md" required type="number">
+
+                            </div>
+                        </div>
+
+                        <!-- Get the playtime in Minuetes-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formTime">Play Time</label>
+                            <div class="col-md-4">
+                                <input id="formTime" name="formTime" placeholder="120" class="form-control input-md" required type="number">
+                                <span class="help-block">Please enter playtime in minutes</span>
+                            </div>
+                        </div>
+
+                        <!-- Discover whether or not this game has already been played -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="formPlayed">New Game?</label>
+                            <div class="col-md-4">
+                                <div class="radio">
+                                    <label for="formPlayed-0">
+                                        <input name="formPlayed" id="formPlayed-0" value="0" type="radio">
+                                        We played this
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="formPlayed-1">
+                                        <input name="formPlayed" id="formPlayed-1" value="1" type="radio">
+                                        Never Played
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="uid" value="@CurrentGame">
+
+                        <!-- Submit Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="submitButton"></label>
+                            <div class="col-md-8">
+                                <button id="submitButton" name="submitButton" class="btn btn-info">Add Game</button>
+                                <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form> <!--FORM ENDS HERE-->
+            </div>  <!--Modal Body-->
+
+        </div> <!--Modal Content-->
+    </div> <!--Modal Dialog-->
 </div>
+
+@section scripts{
+    <script>
+        $(window).load(function () {
+            var gameData = document.getElementById('GameData');
+            document.getElementById('formName').value = gameData.getAttribute("name");
+            document.getElementById('formImage').value = gameData.getAttribute("image");
+            document.getElementById('formDescription').value = gameData.getAttribute("description");
+            document.getElementById('formMinPlayers').value = gameData.getAttribute("min");
+            document.getElementById('formMaxPlayers').value = gameData.getAttribute("max");
+            document.getElementById('formTime').value = gameData.getAttribute("time");
+            if (gameData.getAttribute("played") == 1) {
+                document.getElementById('formPlayed-1').setAttribute("checked", "checked");
+            } else {
+                document.getElementById('formPlayed-0').setAttribute("checked", "checked");
+            }
+            
+        })
+
+</script>  
+}

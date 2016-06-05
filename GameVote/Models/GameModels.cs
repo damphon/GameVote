@@ -80,6 +80,13 @@ namespace GameVote.Models
             return dbhelp.RemoveGame(uid);
         }
 
+        //Edit Game Played
+        public static string GamePlayed(string uid)
+        {
+            DatabaseHelper dbhelp = new DatabaseHelper();
+            return dbhelp.EditGamePlayed(uid);
+        }
+
         //Get Full list of games as String
         public string FullGameListString()
         {
@@ -108,7 +115,7 @@ namespace GameVote.Models
             return GameString;
         }
 
-        //Get Single Game as String
+        //Get Single Game as String for the edit screen
         public string SingleGameString(string uid)
         {
             var List = SingleGame(uid);
@@ -128,7 +135,8 @@ namespace GameVote.Models
                 sb.Append(game.max);
                 sb.Append(" players for ");
                 sb.Append(game.time);
-                sb.Append("Min.</p></li>");
+                sb.Append("Min.</p>");
+                sb.Append("<div id='GameData' name='" + game.name + "' image='" + game.image + "' played='" + game.played + "' min='" + game.min + "' max='" + game.max + "' time='" + game.time + "' description='" + game.description + "'' style='display: none; ' /></li>");
                 GameString = sb.ToString();
             }
             return GameString;

@@ -29,7 +29,7 @@ namespace GameVote.Controllers
         }
 
         [HttpPost]
-        public ActionResult Manage(String formName, int formMinPlayers, int formMaxPlayers, int formTime, int formPlayed, string formDescription, string formImage) 
+        public ActionResult Manage(string formName, int formMinPlayers, int formMaxPlayers, int formTime, int formPlayed, string formDescription, string formImage) 
         {
             bool hasPlayed = false;
             string Description = formDescription;
@@ -73,9 +73,36 @@ namespace GameVote.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(string uid)
+        public ActionResult Edit(string formName, int formMinPlayers, int formMaxPlayers, int formTime, int formPlayed, string formDescription, string formImage, String uid)
+        {
+            bool hasPlayed = false;
+            string Description = formDescription;
+            string Image = formImage;
+
+            GameModels.Delete(uid); //Deletes existing entry before making new one for the game.
+
+            DatabaseHelper dbhelp = new DatabaseHelper();
+
+            //If it is 1 then hasPlayed remains false, no need for an else.
+            if (formPlayed == 0) hasPlayed = true;
+            if (Description == "") Description = "No Information Provided";
+            if (Image == "") Image = "http://gn.jeremytoler.net/Content/Images/SW.jpg";
+
+            dbhelp.NewGame(formName, Description, Image, formMinPlayers, formMaxPlayers, formTime, hasPlayed);
+            return Redirect("~/Home/Manage");
+        }
+
+        [HttpPost]
+        public ActionResult Delete(string uid)
         {
             GameModels.Delete(uid);
+            return Redirect("~/Home/Manage");
+        }
+
+        [HttpPost]
+        public ActionResult SetPlayed(string uid)
+        {
+            GameModels.GamePlayed(uid);
             return Redirect("~/Home/Manage");
         }
 

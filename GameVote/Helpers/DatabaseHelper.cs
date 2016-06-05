@@ -104,7 +104,30 @@ namespace GameVote.Helpers
             return GameEntry;
         }
 
-        //Add a way to modify an existing entry
+        public string EditGamePlayed(string name)
+        {
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MCDBConnection"].ToString()))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "UPDATE GameList SET HasPlayed=1 WHERE [Key]=@Name;";
+                    command.Parameters.AddWithValue("@Name", name);
+                    
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SqlException e)
+                    {
+                        return "Error: " + e.Message;
+                    }
+                }
+            }
+            return "Game has been added";
+        }
 
         public string RemoveGame(string uid)
         {
