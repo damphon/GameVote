@@ -47,7 +47,7 @@ namespace GameVote.Helpers
                 }
                 i++;
                 if (i > 3) break; //This will use handle win to get game with most votes.
-            } while (CheckForWin(i-1) != true);
+            } while (CheckForWin() != true);
             //After finding that something won, Remove all games from the list that did not win.
             HandleWin(tally.Max(m => m.votes));
             //Randomly select a winner from games that did win in case of tie.
@@ -82,10 +82,11 @@ namespace GameVote.Helpers
             return voters;
         }
 
-        public bool CheckForWin(int i)
+        public bool CheckForWin()
         {
-            int NeededVotes = (voters * i) / 2;
-            if (i == 1) NeededVotes++;//need half +1 to win, but that does not work once voters < votes.
+            int NeededVotes = voters / 2;
+            if (NeededVotes % 2 == 0)//if half of votes is an even number then half + 1 is needed. 
+                NeededVotes++;
             foreach (var vote in tally)
             {
                 if (vote.votes >= NeededVotes)

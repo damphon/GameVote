@@ -34,6 +34,9 @@ namespace GameVote.Controllers
             bool hasPlayed = false;
             string Description = formDescription;
             string Image = formImage;
+            int min = formMinPlayers;
+            int max = formMaxPlayers;
+            int time = formTime;
 
             DatabaseHelper dbhelp = new DatabaseHelper();
 
@@ -41,8 +44,14 @@ namespace GameVote.Controllers
             if (formPlayed == 0) hasPlayed = true;
             if (Description == "") Description = "No Information Provided";
             if (Image == "") Image = "http://gn.jeremytoler.net/Content/Images/SW.jpg";
+            if (formMinPlayers < 1) min = 1;
+            else if (formMinPlayers > 100) min = 100;
+            if (formMaxPlayers < 1) max = 1;
+            else if (formMaxPlayers > 100) max = 100;
+            if (formTime < 5) time = 5;
+            else if (formTime > 720) time = 720;
 
-            dbhelp.NewGame(formName, Description, Image, formMinPlayers, formMaxPlayers, formTime, hasPlayed);
+            dbhelp.NewGame(formName, Description, Image, min, max, time, hasPlayed);
             return View();
         }
 

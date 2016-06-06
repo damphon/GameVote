@@ -85,7 +85,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="formName">Game Name</label>
                             <div class="col-md-6">
-                                <input id="formName" name="formName" placeholder="" class="form-control input-md" required type="text">
+                                <input id="formName" name="formName" placeholder="" class="form-control input-md" required type="text" maxlength="50">
 
                             </div>
                         </div>
@@ -94,7 +94,8 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="formDescription">Game Description</label>
                             <div class="col-md-6">
-                                <textarea class="form-control" id="formDescription" name="formDescription"></textarea>
+                                <textarea class="form-control" id="formDescription" name="formDescription" maxlength="600" onkeyup="textCounter(this,'counter',600);"></textarea>
+                                <div id="fullCounter"><input disabled maxlength="3" size="3" value="0" id="counter">/600</div><!-- Countdown for remaining charecters in text feild -->
                             </div>
                         </div>
 
@@ -159,7 +160,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="submitButton"></label>
                             <div class="col-md-8">
-                                <button id="submitButton" name="submitButton" class="btn btn-info">Add Game</button>
+                                <button id="submitButton" name="submitButton" class="btn btn-info">Update Game</button>
                                 <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
@@ -190,5 +191,15 @@
             
         })
 
+        function textCounter(field, field2, maxlimit) {
+            //Counts text entered in form and does not allow more than the maxlimit to be entered
+            var countfield = document.getElementById(field2);
+            if (field.value.length > maxlimit) {
+                field.value = field.value.substring(0, maxlimit);
+                return false;
+            } else {
+                countfield.value = field.value.length;
+            }
+        }
 </script>  
 }

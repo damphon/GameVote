@@ -10,7 +10,7 @@
 </head>
 <body>
     <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" id="listModal" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -95,7 +95,7 @@
                     <li>@Html.ActionLink("Manage", "Manage", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" data-toggle="modal" data-target="#myModal">Create New List</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#listModal">Create New List</a></li>
                 </ul>
             </div>
         </div>
@@ -104,7 +104,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - GameVote</p>
         </footer>
     </div>
 

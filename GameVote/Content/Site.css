@@ -79,3 +79,13 @@ h2{
     font-size:1.5em;
     font-weight:bold;
 }
+
+#counter{
+	background-color: transparent;
+    border: 0px solid;
+	text-align: right;
+}
+
+#fullCounter{
+    float:right;
+}

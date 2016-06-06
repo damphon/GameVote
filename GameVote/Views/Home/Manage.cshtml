@@ -8,11 +8,11 @@
 
 <!--Modal Buttonn-->
 <div class="wrapper">
-    <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModal">Add Game</button>
+    <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#addModal">Add Game</button>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="addModal" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="formName">Game Name</label>
                             <div class="col-md-6">
-                                <input id="formName" name="formName" placeholder="" class="form-control input-md" required type="text">
+                                <input id="formName" name="formName" placeholder="" class="form-control input-md" required type="text" maxlength="50">
 
                             </div>
                         </div>
@@ -39,7 +39,8 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="formDescription">Game Description</label>
                             <div class="col-md-6">
-                                <textarea class="form-control" id="formDescription" name="formDescription"></textarea>
+                                <textarea class="form-control" id="formDescription" name="formDescription" maxlength="600" onkeyup="textCounter(this,'counter',600);"></textarea>
+                                <div id="fullCounter"><input disabled maxlength="3" size="3" value="0" id="counter">/600</div><!-- Countdown for remaining charecters in text feild -->
                             </div>
                         </div>
 
@@ -122,3 +123,18 @@
 <ul class="GameList" style="list-style-type:none">
     @Html.Raw(ListHelp.FullGameListString())
 </ul>
+
+@section scripts{
+    <script>
+        function textCounter(field, field2, maxlimit) {
+            //Counts text entered in form and does not allow more than the maxlimit to be entered
+            var countfield = document.getElementById(field2);
+            if (field.value.length > maxlimit) {
+                field.value = field.value.substring(0, maxlimit);
+                return false;
+            } else {
+                countfield.value = field.value.length;
+            }
+        }
+    </script>
+}

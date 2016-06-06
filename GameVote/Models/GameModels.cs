@@ -136,7 +136,21 @@ namespace GameVote.Models
                 sb.Append(" players for ");
                 sb.Append(game.time);
                 sb.Append("Min.</p>");
-                sb.Append("<div id='GameData' name='" + game.name + "' image='" + game.image + "' played='" + game.played + "' min='" + game.min + "' max='" + game.max + "' time='" + game.time + "' description='" + game.description + "'' style='display: none; ' /></li>");
+                sb.Append("<div id='GameData' name='");//creates a hidden element with all game data so the JS can fill out edit form automaticly.
+                sb.Append(game.name);
+                sb.Append("' image='");
+                sb.Append(game.image);
+                sb.Append("' played='");
+                sb.Append(game.played);
+                sb.Append("' min='");
+                sb.Append(game.min);
+                sb.Append("' max='");
+                sb.Append(game.max);
+                sb.Append("' time='");
+                sb.Append(game.time);
+                sb.Append("' description='");
+                sb.Append(game.description);
+                sb.Append("'' style='display: none;'/></li>");
                 GameString = sb.ToString();
             }
             return GameString;
