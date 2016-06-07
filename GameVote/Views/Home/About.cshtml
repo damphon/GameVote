@@ -3,11 +3,11 @@
 }
 <h2>@ViewBag.Title</h2>
 
-<p>First someone will need to use the 'create new list' link in the menu to create a ballot of all games available that match the number of players and how much time we have to play. I have also added an optional discovery mode that only keeps 5 random games that meet the number of players/time requierments, this is intended to make us play games we dont often vote on if we feel like game night is getting stale. </p>
+<p>First someone will need to use the 'create new list' link in the menu to create a ballot of all games available that match the number of players and how much time we have to play.</p>
 
 <p>Players then select their name and vote for the games they want to play. When 'check results' is clicked the vote is tallyed and all players that voted are listed along with the winning game. If not all players are listed then not all votes have been recived. The first person to see all players names(the last to vote) is the one that sees the true winning game.</p>
 
-<p>Uses a voting system similar to Single Transferable Vote. You get 3 votes, in order of primary -> tertiary. The program then takes the primary votes and checks to see if there is a game that was voted for by half of the voters (half+1 if there is an even number of voters). If there is no winner it adds the secondary votes and checks again to see if any single game has half (or half+1) of the votes. If that fails it adds the tertiary votes then selects the game with the most votes.</p> 
+<p>I'm using a voting system similar to Single Transferable Vote. You get 3 votes, in order of primary -> tertiary. The program then takes the primary votes and checks to see if there is a game that was voted for by half+1 of the voters. If there is no winner it adds the secondary votes and checks again to see if any single game has half+1 of the votes. If that fails it adds the tertiary votes then selects the game with the most votes. Using half plus one ensures that a game only wins if the majority of players want it.</p> 
 
 <center><img src="http://gn.jeremytoler.net/Content/Images/WinCheck.png" alt="Image of Source Code"/></center>
 
@@ -19,7 +19,7 @@
 <br />
 <h2>Change Log</h2>
 <ul class="Changelog">
-    <li>6/6 - Added random selection as a way of keeping us from always playing the same games. Its an option when making the ballot, not required.</li>
+    <li>6/7 - Changed check for win again, last time if there was an odd number of voters a game could win with less than half votes.</li>
     <li>6/6 - Changed check for win again and updated about page to reflect new way that win is determined.</li>
     <li>6/5 - Limited accepted input for games and took the slightest security mesures to try to prevent anyone from accedentaly breaking the database.</li>
     <li>6/4 - Added ways to edit the games</li>

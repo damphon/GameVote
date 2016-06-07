@@ -84,9 +84,7 @@ namespace GameVote.Helpers
 
         public bool CheckForWin()
         {
-            int NeededVotes = voters / 2;
-            if (NeededVotes % 2 == 0)//if half of votes is an even number then half + 1 is needed. 
-                NeededVotes++;
+            int NeededVotes = (voters / 2) + 1;
             foreach (var vote in tally)
             {
                 if (vote.votes >= NeededVotes)

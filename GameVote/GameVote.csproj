@@ -192,6 +192,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\SW.jpg" />
     <Content Include="Content\Images\WinCheck.png" />
+    <Content Include="Content\Images\WinHandle.png" />
     <Content Include="Content\QueryResults.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
