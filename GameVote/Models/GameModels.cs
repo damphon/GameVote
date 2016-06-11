@@ -38,7 +38,9 @@ namespace GameVote.Models
 
         public string GameListQuery(int Players, int PlayTime)
         {
-            List<GameModels> FullList = GameList();
+            List<GameModels> TempList = GameList();
+            var rnd = new Random();
+            var FullList = TempList.OrderBy(x => rnd.Next()).ToList();
             DatabaseHelper dbhelp = new DatabaseHelper();
             dbhelp.DeleteVoteList(); //Delete any existing vote results before making new query
 
@@ -90,7 +92,8 @@ namespace GameVote.Models
         //Get Full list of games as String
         public string FullGameListString()
         {
-            var List = GameList();
+            var Temp = GameList();
+            var List = Temp.OrderBy(x => x.name).ToList();
             string GameString = "";
             foreach (var game in List)
             {
