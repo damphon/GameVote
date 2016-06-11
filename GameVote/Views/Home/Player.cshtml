@@ -11,14 +11,14 @@
 
 
 <h2>Choose your games!</h2>
-    <ul class="GameList" id="ListOfGames" name="@PlayerName" style="list-style-type:none">
-        @Html.Raw(ViewBag.Query)
-    </ul>
+<ul class="GameList" id="ListOfGames" name="@PlayerName" style="list-style-type:none">
+    @Html.Raw(ViewBag.Query)
+</ul>
+<div class="VoteFloat">
     <button id="SubmitButton" name="SubmitButton" class="btn btn-success">Vote</button>
-<br />
-<br />
-<br />
-@Html.ActionLink("Check Results", "VoteResults", "Home")
+    <br />
+    @Html.ActionLink("Check Results", "VoteResults", "Home")
+</div>
 
 @section scripts{
     <script>
