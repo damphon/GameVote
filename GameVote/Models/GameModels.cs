@@ -63,7 +63,7 @@ namespace GameVote.Models
                             sb.Append(game.max);
                             sb.Append(" players for ");
                             sb.Append(game.time);
-                            sb.Append("Min.</p>   Primary: <input class='VotePos' type='radio' name='" + game.uid + "' value='1'>  Secondary: <input class='VotePos' type='radio' name='" + game.uid + "' value='2'>  Tertiary: <input class='VotePos' type='radio' name='" + game.uid + "' value='3'>  Not Selected: <input type='radio' name='" + game.uid + "' value='0' checked='checked'><img src='");
+                            sb.Append("Min.</p> &nbsp; Vote1 <input class='VotePos' type='radio' name='" + game.uid + "' value='1'> &nbsp;|&nbsp; Vote2 <input class='VotePos' type='radio' name='" + game.uid + "' value='2'> &nbsp;|&nbsp; Vote3 <input class='VotePos' type='radio' name='" + game.uid + "' value='3'> &nbsp;|&nbsp; Unselect <input class='VotePos2' type='radio' name='" + game.uid + "' value='0' checked='checked'><img src='");
                             sb.Append(game.image);
                             sb.Append("' Height = '150' class = 'GameImage'/><p class='GameDescription'>");
                             sb.Append(game.description);

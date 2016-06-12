@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     string PlayerName = Path.GetFileName(Request.Url.ToString());
-    ViewBag.Title = PlayerName + " Please Vote";
+    ViewBag.Title = "Please Vote";
     ViewBag.Name = PlayerName;
     GameVote.Models.GameModels GameHelper = new GameVote.Models.GameModels();
     ViewBag.ResultsURL = Url.Action("VoteResults", "Home", routeValues: null, protocol: Request.Url.Scheme);
@@ -10,14 +10,12 @@
 
 
 
-<h2>Choose your games!</h2>
+<h2>Vote for your first, second, and third choices then click 'submit all votes'.</h2>
 <ul class="GameList" id="ListOfGames" name="@PlayerName" style="list-style-type:none">
     @Html.Raw(ViewBag.Query)
 </ul>
 <div class="VoteFloat">
-    <button id="SubmitButton" name="SubmitButton" class="btn btn-success">Vote</button>
-    <br />
-    @Html.ActionLink("Check Results", "VoteResults", "Home")
+    <center><button id="SubmitButton" name="SubmitButton" class="btn btn-info">Submit all Votes</button> &nbsp; &nbsp; &nbsp; &nbsp; @Html.ActionLink("Check Results", "VoteResults", "Home")</center>
 </div>
 
 @section scripts{

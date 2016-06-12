@@ -3,28 +3,29 @@
 }
 <h2>@ViewBag.Title</h2>
 
-<p>First someone will need to use the 'create new list' link in the menu to create a ballot of all games available that match the number of players and how much time we have to play.</p>
+<p>First, someone will need to use the 'create new list' link in the menu to create a ballot of all games that meet number of players/available time criteria.</p>
 
-<p>Players then select their name and vote for the games they want to play. When 'check results' is clicked the vote is tallyed and all players that voted are listed along with the winning game. If not all players are listed then not all votes have been recived. The first person to see all players names(the last to vote) is the one that sees the true winning game.</p>
+<p>Players then select their name and vote for the games they want to play. When 'check results' is clicked the votes are tallied and all players that voted are listed along with the winning game. If not all players are listed then not all votes have been received. In other words, if you tallied the votes and there are missing names, then not all the votes have been accounted for and the page will have to be refreshed.</p>
 
-<p>I'm using a voting system similar to Single Transferable Vote. You get 3 votes, in order of primary -> tertiary. The program then takes the primary votes and checks to see if there is a game that was voted for by half+1 of the voters. If there is no winner it adds the secondary votes and checks again to see if any single game has half+1 of the votes. If that fails it adds the tertiary votes then selects the game with the most votes. Using half plus one ensures that a game only wins if the majority of players want it.</p> 
+<p>I'm using a voting system similar to Single Transferable Voting. You get 3 votes, in order of first choice -> third choice. The program then takes the primary votes and checks to see if there is a game that was voted for by half+1 of the voters. If there is no winner it adds the secondary votes and checks again to see if any single game has half+1 of the votes. If that fails it adds the tertiary votes then selects the game with the most votes. Using half plus one ensures that a game only wins if the majority of players want it.</p> 
 
-<center><img src="http://gn.jeremytoler.net/Content/Images/WinCheck.png" alt="Image of Source Code"/></center>
+<center><img src="http://gn.jeremytoler.net/Content/Images/WinCheck.png"  Height = '300' alt="Image of Source Code"/> <img src="http://gn.jeremytoler.net/Content/Images/WinHandle.png" Height='300' alt="Image of Source Code" /></center>
 
 <p>If there is a tie it randomly selects a winner from all games that tie by determining the largest number of votes, then removing all games from list that do not have that number of votes, then randomly selecting one of the remaining games</p>
-
-<center><img src="http://gn.jeremytoler.net/Content/Images/WinHandle.png" alt="Image of Source Code" /></center>
 
 <br />
 <br />
 <h2>Change Log</h2>
 <ul class="Changelog">
+    <li>6/12 - Floated the Vote and View results options on the ballot so that players do not have to scroll to the top or bottom once they finish voting. </li>
+    <li>6/11 - Made the ballot sort games in random order to prevent any games having an advantage due to placement and eye time.</li>
+    <li>6/11 - Made the game management screen sort games in alphabetical order</li>
     <li>6/7 - Changed check for win again, last time if there was an odd number of voters a game could win with less than half votes.</li>
     <li>6/6 - Changed check for win again and updated about page to reflect new way that win is determined.</li>
     <li>6/5 - Limited accepted input for games and took the slightest security mesures to try to prevent anyone from accedentaly breaking the database.</li>
     <li>6/4 - Added ways to edit the games</li>
     <li>6/4 - Added ways to handel no-winner and draws</li>
-    <li>6/4 - Changed vote to use half+1 for first vote only. Half+1 dosent work after first pass, there are to many votes.</li>
+    <li>6/4 - Changed vote to use half+1 for first vote only. Half+1 dosent work after first pass, there are too many votes.</li>
     <li>6/3 - Changed were the create list link is, and reduced nomber of clicks needed to vote. Updated about page to have more info about how the vote works.</li>
     <li>6/3 - Changed vote to use half+1 instead of half.</li>
     <li>6/2 - formatted the way games are displayed, and added this changelog!</li>
