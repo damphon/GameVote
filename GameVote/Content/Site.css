@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    display: block;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -23,6 +24,11 @@ textarea {
     max-width: 280px;
 }
 
+h2{
+    font-size:1.5em;
+    font-weight:bold;
+}
+
 #BigButton{
     margin-bottom: 20px;
 }
@@ -39,6 +45,7 @@ textarea {
 	font-size:2em;
 }
 
+/*The following is for the game lists*/
 .GameName{
     text-align: center;
     margin-top: -10px;
@@ -76,19 +83,22 @@ textarea {
     position: relative;
 }
 
-h2{
-    font-size:1.5em;
-    font-weight:bold;
+.GameList{
+    list-style:none;
+    padding-left:0px;
+}
+/*The following is for th Ballot*/
+.GameName_ballot{
+    text-align: center;
+    margin-top: -10px;
 }
 
-#counter{
-	background-color: transparent;
-    border: 0px solid;
-	text-align: right;
+.VotePos{
+    vertical-align: -2px;
 }
 
-#fullCounter{
-    float:right;
+.VotePos2{
+    vertical-align: -2px;
 }
 
 .VoteFloat{
@@ -103,15 +113,38 @@ h2{
     width: 100%;
 }
 
-.VotePos{
-    vertical-align: -2px;
+/*The following section auto hides game info on ballot*/
+.ShowInfo{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 0px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    float: right;
 }
 
-.VotePos2{
-    vertical-align: -2px;
+.ShowInfo:focus ~ .HideInfo {
+    display: block;
 }
 
-.GameList{
-    list-style:none;
-    padding-left:0px;
+.ballot{
+    height: auto;
+}
+
+.HideInfo{
+    display:none;
+}
+
+/*The following section is for the counter on the add and edit game form*/
+#counter{
+	background-color: transparent;
+    border: 0px solid;
+	text-align: right;
+}
+
+#fullCounter{
+    float:right;
 }

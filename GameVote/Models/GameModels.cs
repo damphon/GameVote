@@ -40,7 +40,7 @@ namespace GameVote.Models
         {
             List<GameModels> TempList = GameList();
             var rnd = new Random();
-            var FullList = TempList.OrderBy(x => rnd.Next()).ToList();
+            var FullList = (TempList.OrderBy(x => rnd.Next()).ToList()).Take(15);//Not sure why but it always takes less
             DatabaseHelper dbhelp = new DatabaseHelper();
             dbhelp.DeleteVoteList(); //Delete any existing vote results before making new query
 
@@ -55,19 +55,19 @@ namespace GameVote.Models
                         if(Time <= PlayTime)
                         {
                             StringBuilder sb = new StringBuilder(GameQuery);
-                            sb.Append("<li class='well'><h2 class='GameName'>");
+                            sb.Append("<li class='well ballot'><h2 class='GameName_ballot'>");
                             sb.Append(game.name);
-                            sb.Append("</h2><p class = 'GameStats'>Entertains ");
+                            sb.Append("</h2> Vote1 <input class='VotePos' type='radio' name='" + game.uid + "' value='1'> &nbsp;|&nbsp; Vote2 <input class='VotePos' type='radio' name='" + game.uid + "' value='2'> &nbsp;|&nbsp; Vote3 <input class='VotePos' type='radio' name='" + game.uid + "' value='3'> &nbsp;|&nbsp; Unselect <input class='VotePos2' type='radio' name='" + game.uid + "' value='0' checked='checked'><span class='ShowInfo' tabindex='0'>Show Me More</span><div class='HideInfo'><p class = 'GameStats'>Entertains ");
                             sb.Append(game.min);
                             sb.Append(" - ");
                             sb.Append(game.max);
                             sb.Append(" players for ");
                             sb.Append(game.time);
-                            sb.Append("Min.</p> &nbsp; Vote1 <input class='VotePos' type='radio' name='" + game.uid + "' value='1'> &nbsp;|&nbsp; Vote2 <input class='VotePos' type='radio' name='" + game.uid + "' value='2'> &nbsp;|&nbsp; Vote3 <input class='VotePos' type='radio' name='" + game.uid + "' value='3'> &nbsp;|&nbsp; Unselect <input class='VotePos2' type='radio' name='" + game.uid + "' value='0' checked='checked'><img src='");
+                            sb.Append("Min.</p><img src='");
                             sb.Append(game.image);
                             sb.Append("' Height = '150' class = 'GameImage'/><p class='GameDescription'>");
                             sb.Append(game.description);
-                            sb.Append("</p>");
+                            sb.Append("</p></div>");
                             GameQuery = sb.ToString();
                         }
                     }
