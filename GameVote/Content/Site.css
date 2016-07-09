@@ -148,3 +148,7 @@ h2{
 #fullCounter{
     float:right;
 }
+
+#guestName{
+    margin-bottom:15px;
+}

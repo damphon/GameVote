@@ -30,5 +30,52 @@
                 <a href="~/Home/Player/Jeremy" class="dash_button">Jeremy</a>
             </div>
         </section>
+        <section class="row">
+            <div class="col-lg-4" id="BigButton">
+                <a href="#" class="dash_button" data-toggle="modal" data-target="#addModal">Guest</a>
+            </div>
+        </section>
     </center>
 </div>
+
+
+<!-- Guest Modal -->
+<div class="modal fade" id="addModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Please enter your name:</h2>
+            </div>
+            <div class="modal-body">
+                <!-- Get the Guests Name-->
+                <section class="row">
+                    <div class="col-md-6">
+                        <input id="guestName" name="guestName" placeholder="" class="form-control input-md" required type="text" maxlength="50">
+                    </div>
+                </section>
+                <section class="row">
+                    <div class="col-md-8">
+                        <button id="submitButton" name="submitButton" class="btn btn-info">Vote</button>
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                </section>
+</div>  <!--Modal Body-->
+        </div> <!--Modal Content-->
+    </div> <!--Modal Dialog-->
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            $('#submitButton').click(function (e) {
+                var inputvalue = $("#guestName").val();
+                window.location.replace(" /Home/Player/" + inputvalue);
+
+          });
+    });
+</script>     
+}
